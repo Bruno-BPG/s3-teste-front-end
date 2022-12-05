@@ -1,3 +1,4 @@
+import api from "../components/api";
 
 const GerarCards = ({ itens, idDoCliente }) => {
   let itensFiltrados = [];
@@ -16,6 +17,21 @@ const GerarCards = ({ itens, idDoCliente }) => {
     return <div>voce não possui contatos</div>;
   }
 
+    
+  const deleteContato = async (idParaDeletar) => {
+
+    const url = "http://localhost:3001/contatos/" + idParaDeletar;
+
+    await api
+      .delete(url)
+      // .then((response) => alert("contato deletado"))
+      .catch((err) => {
+        alert("ocoreu um erro");
+        console.error("ops!" + err);
+      });
+
+  };
+
   return itensFiltrados.map((produto) => (
     <div className="conteiner" key={produto.id}>
       <span className="card">nome do contato:{produto.name}</span>
@@ -24,6 +40,7 @@ const GerarCards = ({ itens, idDoCliente }) => {
       <br></br>
       <span className="card">email do contato:{produto.email} </span>
       <br></br>
+      <button onClick={() =>{deleteContato(produto.id)}}>deletar contato</button>
       <br></br>
       <br></br>
     </div>

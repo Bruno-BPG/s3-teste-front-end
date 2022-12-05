@@ -24,7 +24,7 @@ function GerrarHome() {
       .catch((err) => {
         console.error("ops!" + err);
       });
-  }, []);
+  }, [listaDecontatos]);
 
   const history = useHistory();
 
@@ -52,7 +52,7 @@ function GerrarHome() {
 
     await api
       .post(url, data)
-      .then((response) => alert("contato adicionado"))
+      // .then((response) => alert("contato adicionado"))
       .catch((err) => {
         alert("ocoreu um erro");
         console.error("ops!" + err);
